@@ -274,380 +274,80 @@ _BASE_OPTS = [
     cfg.StrOpt('apt_preferences', help=('Path to custom apt/preferences'))
 ]
 
+'''
+this is 'git' mode for build to generate the configfile
+'''
+openstack_item = [
+    'openstack-base',
+    'aodh-base',
+    'barbican-base',
+    'bifrost-base'
+    'blazar-base',
+    'ceilometer-base',
+    'cinder-base',
+    'congress-base',
+    'cloudkitty-base',
+    'designate-base',
+    'dragonflow-base',
+    'ec2-api',
+    'freezer-api',
+    'freezer-base',
+    'glance-base',
+    'gnocchi-base',
+    'heat-base',
+    'horizon',
+    'ironic-base',
+    'ironic-inspector',
+    'karbor-base',
+    'keystone-base',
+    'kuryr-base',
+    'kuryr-libnetwork',
+    'magnum-base',
+    'manila-base',
+    'mistral-base',
+    'monasca-api',
+    'monasca-log-api',
+    'monasca-notification',
+    'monasca-persister',
+    'monasca-statsd',
+    'murano-base',
+    'neutron-base',
+    'neutron-bgp-dragent',
+    'neutron-lbaas-agent',
+    'neutron-vpnaas-agent',
+    'nova-base',
+    'novajoin-base',
+    'octavia-base',
+    'opendaylight',
+    'panko-base',
+    'rally',
+    'sahara-base',
+    'searchlight-base',
+    'senlin-base',
+    'solum-base',
+    'swift-base',
+    'tacker-base',
+    'tempest',
+    'trove-base',
+    'vitrage-base',
+    'vmtp',
+    'watcher-base',
+    'zaqar',
+    'zun-base'
+]
 
-SOURCES = {
-    'openstack-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/requirements/'
-                     'requirements-master.tar.gz')},
-    'aodh-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/aodh/'
-                     'aodh-master.tar.gz')},
-    'barbican-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/barbican/'
-                     'barbican-master.tar.gz')},
-    'bifrost-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/bifrost/'
-                     'bifrost-master.tar.gz')},
-    'blazar-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/blazar/'
-                     'blazar-master.tar.gz')},
-    'ceilometer-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/ceilometer/'
-                     'ceilometer-master.tar.gz')},
-    'ceilometer-base-plugin-panko': {
-        'type': 'url',
-        'location': ('$tarballs_base/panko/'
-                     'panko-master.tar.gz')},
-    'cinder-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/cinder/'
-                     'cinder-master.tar.gz')},
-    'congress-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/congress/'
-                     'congress-master.tar.gz')},
-    'cloudkitty-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/cloudkitty/'
-                     'cloudkitty-master.tar.gz')},
-    'designate-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/designate/'
-                     'designate-master.tar.gz')},
-    'dragonflow-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/dragonflow/'
-                     'dragonflow-master.tar.gz')},
-    'ec2-api': {
-        'type': 'url',
-        'location': ('$tarballs_base/ec2-api/'
-                     'ec2-api-master.tar.gz')},
-    'freezer-api': {
-        'type': 'url',
-        'location': ('$tarballs_base/freezer-api/'
-                     'freezer-api-master.tar.gz')},
-    'freezer-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/freezer/'
-                     'freezer-master.tar.gz')},
-    'glance-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/glance/'
-                     'glance-master.tar.gz')},
-    'gnocchi-base': {
-        'type': 'git',
-        'reference': 'master',
-        'location': ('https://github.com/gnocchixyz/'
-                     'gnocchi.git')},
-    'heat-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/heat/'
-                     'heat-master.tar.gz')},
-    'horizon': {
-        'type': 'url',
-        'location': ('$tarballs_base/horizon/'
-                     'horizon-master.tar.gz')},
-    'horizon-plugin-cloudkitty-dashboard': {
-        'type': 'url',
-        'location': ('$tarballs_base/cloudkitty-dashboard/'
-                     'cloudkitty-dashboard-master.tar.gz')},
-    'horizon-plugin-designate-dashboard': {
-        'type': 'url',
-        'location': ('$tarballs_base/designate-dashboard/'
-                     'designate-dashboard-master.tar.gz')},
-    'horizon-plugin-freezer-web-ui': {
-        'type': 'url',
-        'location': ('$tarballs_base/freezer-web-ui/'
-                     'freezer-web-ui-master.tar.gz')},
-    'horizon-plugin-ironic-ui': {
-        'type': 'url',
-        'location': ('$tarballs_base/ironic-ui/'
-                     'ironic-ui-master.tar.gz')},
-    'horizon-plugin-karbor-dashboard': {
-        'type': 'url',
-        'location': ('$tarballs_base/karbor-dashboard/'
-                     'karbor-dashboard-master.tar.gz')},
-    'horizon-plugin-magnum-ui': {
-        'type': 'url',
-        'location': ('$tarballs_base/magnum-ui/'
-                     'magnum-ui-master.tar.gz')},
-    'horizon-plugin-manila-ui': {
-        'type': 'url',
-        'location': ('$tarballs_base/manila-ui/'
-                     'manila-ui-master.tar.gz')},
-    'horizon-plugin-mistral-dashboard': {
-        'type': 'url',
-        'location': ('$tarballs_base/mistral-dashboard/'
-                     'mistral-dashboard-master.tar.gz')},
-    'horizon-plugin-monasca-ui': {
-        'type': 'url',
-        'location': ('$tarballs_base/monasca-ui/'
-                     'monasca-ui-master.tar.gz')},
-    'horizon-plugin-murano-dashboard': {
-        'type': 'url',
-        'location': ('$tarballs_base/murano-dashboard/'
-                     'murano-dashboard-master.tar.gz')},
-    'horizon-plugin-neutron-lbaas-dashboard': {
-        'type': 'url',
-        'location': ('$tarballs_base/neutron-lbaas-dashboard/'
-                     'neutron-lbaas-dashboard-master.tar.gz')},
-    'horizon-plugin-sahara-dashboard': {
-        'type': 'url',
-        'location': ('$tarballs_base/sahara-dashboard/'
-                     'sahara-dashboard-master.tar.gz')},
-    'horizon-plugin-searchlight-ui': {
-        'type': 'url',
-        'location': ('$tarballs_base/searchlight-ui/'
-                     'searchlight-ui-master.tar.gz')},
-    'horizon-plugin-senlin-dashboard': {
-        'type': 'url',
-        'location': ('$tarballs_base/senlin-dashboard/'
-                     'senlin-dashboard-master.tar.gz')},
-    'horizon-plugin-solum-dashboard': {
-        'type': 'url',
-        'location': ('$tarballs_base/solum-dashboard/'
-                     'solum-dashboard-master.tar.gz')},
-    'horizon-plugin-tacker-dashboard': {
-        'type': 'url',
-        'location': ('http://tarballs.openstack.org/tacker-horizon/'
-                     'tacker-horizon-master.tar.gz')},
-    'horizon-plugin-trove-dashboard': {
-        'type': 'url',
-        'location': ('$tarballs_base/trove-dashboard/'
-                     'trove-dashboard-master.tar.gz')},
-    'horizon-plugin-watcher-dashboard': {
-        'type': 'url',
-        'location': ('$tarballs_base/watcher-dashboard/'
-                     'watcher-dashboard-master.tar.gz')},
-    'horizon-plugin-zaqar-ui': {
-        'type': 'url',
-        'location': ('$tarballs_base/zaqar-ui/'
-                     'zaqar-ui-master.tar.gz')},
-    'horizon-plugin-zun-ui': {
-        'type': 'url',
-        'location': ('$tarballs_base/zun-ui/'
-                     'zun-ui-master.tar.gz')},
-    'ironic-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/ironic/'
-                     'ironic-master.tar.gz')},
-    'ironic-inspector': {
-        'type': 'url',
-        'location': ('$tarballs_base/ironic-inspector/'
-                     'ironic-inspector-master.tar.gz')},
-    'karbor-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/karbor/'
-                     'karbor-master.tar.gz')},
-    'keystone-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/keystone/'
-                     'keystone-master.tar.gz')},
-    'kuryr-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/kuryr/'
-                     'kuryr-master.tar.gz')},
-    'kuryr-libnetwork': {
-        'type': 'url',
-        'location': ('$tarballs_base/kuryr-libnetwork/'
-                     'kuryr-libnetwork-master.tar.gz')},
-    'magnum-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/magnum/'
-                     'magnum-master.tar.gz')},
-    'manila-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/manila/'
-                     'manila-master.tar.gz')},
-    'mistral-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/mistral/'
-                     'mistral-master.tar.gz')},
-    'mistral-base-plugin-tacker': {
-        'type': 'url',
-        'location': ('$tarballs_base/tacker/'
-                     'tacker-master.tar.gz')},
-    'monasca-api': {
-        'type': 'url',
-        'location': ('$tarballs_base/monasca-api/'
-                     'monasca-api-master.tar.gz')},
-    'monasca-log-api': {
-        'type': 'url',
-        'location': ('$tarballs_base/monasca-log-api/'
-                     'monasca-log-api-master.tar.gz')},
-    'monasca-notification': {
-        'type': 'url',
-        'location': ('$tarballs_base/monasca-notification/'
-                     'monasca-notification-master.tar.gz')},
-    'monasca-persister': {
-        'type': 'url',
-        'location': ('$tarballs_base/monasca-persister/'
-                     'monasca-persister-master.tar.gz')},
-    'monasca-statsd': {
-        'type': 'url',
-        'location': ('$tarballs_base/monasca-statsd/'
-                     'monasca-statsd-master.tar.gz')},
-    'murano-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/murano/'
-                     'murano-master.tar.gz')},
-    'neutron-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/neutron/'
-                     'neutron-master.tar.gz')},
-    'neutron-base-plugin-neutron-fwaas': {
-        'type': 'url',
-        'location': ('$tarballs_base/neutron-fwaas/'
-                     'neutron-fwaas-master.tar.gz')},
-    'neutron-base-plugin-networking-generic-switch': {
-        'type': 'url',
-        'location': ('$tarballs_base/networking-generic-switch/'
-                     'networking-generic-switch-master.tar.gz')},
-    'neutron-base-plugin-networking-sfc': {
-        'type': 'url',
-        'location': ('$tarballs_base/networking-sfc/'
-                     'networking-sfc-master.tar.gz')},
-    'neutron-base-plugin-vmware-nsx': {
-        'type': 'url',
-        'location': ('$tarballs_base/vmware-nsx/'
-                     'vmware-nsx-master.tar.gz')},
-    'neutron-bgp-dragent': {
-        'type': 'url',
-        'location': ('$tarballs_base/neutron-dynamic-routing/'
-                     'neutron-dynamic-routing-master.tar.gz')},
-    'neutron-lbaas-agent': {
-        'type': 'url',
-        'location': ('$tarballs_base/neutron-lbaas/'
-                     'neutron-lbaas-master.tar.gz')},
-    'neutron-server-opendaylight-plugin-networking-odl': {
-        'type': 'url',
-        'location': ('$tarballs_base/networking-odl/'
-                     'networking-odl-master.tar.gz')},
-    'neutron-server-opendaylight-plugin-networking-bgpvpn': {
-        'type': 'url',
-        'location': ('$tarballs_base/networking-bgpvpn/'
-                     'networking-bgpvpn-master.tar.gz')},
-    'neutron-server-opendaylight-plugin-networking-l2gw': {
-        'type': 'url',
-        'location': ('$tarballs_base/networking-l2gw/'
-                     'networking-l2gw-master.tar.gz')},
-    'neutron-server-opendaylight-plugin-networking-sfc': {
-        'type': 'url',
-        'location': ('$tarballs_base/networking-sfc/'
-                     'networking-sfc-master.tar.gz')},
-    'neutron-server-plugin-neutron-dynamic-routing': {
-        'type': 'url',
-        'location': ('$tarballs_base/neutron-dynamic-routing/'
-                     'neutron-dynamic-routing-master.tar.gz')},
-    'neutron-server-plugin-neutron-lbaas': {
-        'type': 'url',
-        'location': ('$tarballs_base/neutron-lbaas/'
-                     'neutron-lbaas-master.tar.gz')},
-    'neutron-server-plugin-vmware-nsxlib': {
-        'type': 'url',
-        'location': ('$tarballs_base/vmware-nsxlib/'
-                     'vmware-nsxlib-master.tar.gz')},
-    'neutron-server-plugin-vpnaas-agent': {
-        'type': 'url',
-        'location': ('$tarballs_base/neutron-vpnaas/'
-                     'neutron-vpnaas-master.tar.gz')},
-    'neutron-vpnaas-agent': {
-        'type': 'url',
-        'location': ('$tarballs_base/neutron-vpnaas/'
-                     'neutron-vpnaas-master.tar.gz')},
-    'neutron-server-ovn-plugin-networking-ovn': {
-        'type': 'url',
-        'location': ('$tarballs_base/networking-ovn/'
-                     'networking-ovn-master.tar.gz')},
-    'nova-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/nova/'
-                     'nova-master.tar.gz')},
-    'nova-base-plugin-blazar': {
-        'type': 'url',
-        'location': ('$tarballs_base/blazar-nova/'
-                     'blazar-nova-master.tar.gz')},
-    'novajoin-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/novajoin/'
-                     'novajoin-master.tar.gz')},
-    'octavia-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/octavia/'
-                     'octavia-master.tar.gz')},
-    'opendaylight': {
-        'type': 'url',
-        'location': ('https://nexus.opendaylight.org/content/'
-                     'repositories/opendaylight.release/org/opendaylight/'
-                     'integration/distribution-karaf/0.6.1-Carbon/'
-                     'distribution-karaf-0.6.1-Carbon.tar.gz')},
-    'panko-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/panko/'
-                     'panko-master.tar.gz')},
-    'rally': {
-        'type': 'url',
-        'location': ('$tarballs_base/rally/'
-                     'rally-master.tar.gz')},
-    'sahara-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/sahara/'
-                     'sahara-master.tar.gz')},
-    'searchlight-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/searchlight/'
-                     'searchlight-master.tar.gz')},
-    'senlin-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/senlin/'
-                     'senlin-master.tar.gz')},
-    'solum-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/solum/'
-                     'solum-master.tar.gz')},
-    'swift-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/swift/'
-                     'swift-master.tar.gz')},
-    'tacker-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/tacker/'
-                     'tacker-master.tar.gz')},
-    'tempest': {
-        'type': 'url',
-        'location': ('$tarballs_base/tempest/'
-                     'tempest-master.tar.gz')},
-    'trove-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/trove/'
-                     'trove-master.tar.gz')},
-    'vitrage-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/vitrage/'
-                     'vitrage-master.tar.gz')},
-    'vmtp': {
-        'type': 'url',
-        'location': ('$tarballs_base/vmtp/'
-                     'vmtp-master.tar.gz')},
-    'watcher-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/watcher/'
-                     'watcher-master.tar.gz')},
-    'zaqar': {
-        'type': 'url',
-        'location': ('$tarballs_base/zaqar/'
-                     'zaqar-master.tar.gz')},
-    'zun-base': {
-        'type': 'url',
-        'location': ('$tarballs_base/zun/'
-                     'zun-master.tar.gz')}
-}
+SOURCES = {}
+
+for item in openstack_item:
+    if 'base' in item:
+        SOURCES[item] = {'type': 'git', 'location': 'https://github.com/openstack/' + item.split('-')[0], 'reference':
+            'stable/ocata' }
+    elif 'agent' in item:
+        SOURCES[item] = {'type': 'git', 'location': 'https://github.com/openstack/' + item.split('-')[0] +
+                                                    item.split('-')[1], 'reference': 'stable/ocata' }
+    else:
+        SOURCES[item] = {'type': 'git', 'location': 'https://github.com/openstack/' + item, 'reference': 'stable/ocata'
+                         }
 
 
 # NOTE(SamYaple): Only increment the UID. Never reuse old or removed UIDs.
