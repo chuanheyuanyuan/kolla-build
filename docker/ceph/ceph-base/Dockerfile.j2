@@ -50,3 +50,7 @@ COPY extend_start.sh /usr/local/bin/kolla_extend_start
 RUN chmod 755 /usr/local/bin/kolla_extend_start
 
 {% block ceph_base_footer %}{% endblock %}
+
+COPY kolla_start_start.sh /usr/local/bin/kolla_start_start
+CMD ["kolla_start_start"]
+

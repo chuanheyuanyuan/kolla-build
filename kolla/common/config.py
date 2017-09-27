@@ -318,7 +318,6 @@ openstack_item = [
     'nova-base',
     'novajoin-base',
     'octavia-base',
-    'opendaylight',
     'panko-base',
     'rally',
     'sahara-base',
@@ -348,6 +347,9 @@ for item in openstack_item:
     else:
         SOURCES[item] = {'type': 'git', 'location': 'https://github.com/openstack/' + item, 'reference': 'stable/ocata'
                          }
+						 
+SOURCES['opendaylight'] = {'type':'url','location':'https://nexus.opendaylight.org/content/epositories/opendaylight.release/org/opendaylight/integration/distribution-karaf/0.6.1-Carbon/'}
+
 
 
 # NOTE(SamYaple): Only increment the UID. Never reuse old or removed UIDs.
