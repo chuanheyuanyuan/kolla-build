@@ -69,6 +69,7 @@ COPY yum.conf /etc/yum.conf
         'opendaylight.repo',
         'td.repo',
         'zookeeper.repo'
+		'CentOS-Base.repo'
     ] %}
 
     {% set base_yum_url_packages = [
@@ -233,7 +234,9 @@ RUN yum -y install \
     {# Endif for install_type binary #}
 
     {% if install_type == 'source' %}
-
+#RUN sed -i 's%#baseurl%baseurl%g' /etc/yum.repos.dCentOS-Base.repo
+#RUN sed -i 's%mirrorlist%#mirrorlist%g' /etc/yum.repos.dCentOS-Base.repo
+	
 {% set base_centos_source_packages = [
     'curl',
     'iproute',
